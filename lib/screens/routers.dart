@@ -2,6 +2,7 @@ import 'package:chaaat/main.dart';
 import 'package:chaaat/screens/chat_screen.dart';
 import 'package:chaaat/screens/login_page.dart';
 import 'package:chaaat/screens/registration_page.dart';
+import 'package:chaaat/screens/welcome_screen.dart';
 import 'package:flutter/material.dart';
 
 class RouteGenerate {
@@ -9,16 +10,16 @@ class RouteGenerate {
     final args = settings.arguments;
 
     switch (settings.name) {
-      case '/':
-        return MaterialPageRoute(builder: ((context) => MyApp()));
+      case WelcomeScreen.routeName:
+        return MaterialPageRoute(builder: ((context) => WelcomeScreen()));
 
-      case '/login-screen':
+      case LoginScreen.routeName:
         return MaterialPageRoute(builder: ((context) => LoginScreen()));
 
-      case '/Register-screen':
+      case RegistrationScreen.routeName:
         return MaterialPageRoute(builder: ((context) => RegistrationScreen()));
 
-      case '/Chat-screen':
+      case ChatScreen.routeName:
         return MaterialPageRoute(builder: ((context) => ChatScreen()));
 
       default:

@@ -15,8 +15,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: '/',
       onGenerateRoute: (settings) => RouteGenerate.generateRoute(settings),
+      initialRoute: WelcomeScreen.routeName,
       theme: ThemeData(
         textTheme: const TextTheme(
           bodyMedium: TextStyle(
@@ -26,7 +26,6 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: WelcomeScreen(),
     );
   }
 }
