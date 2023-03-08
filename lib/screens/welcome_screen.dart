@@ -3,6 +3,7 @@ import 'package:chaaat/screens/registration_page.dart';
 import 'package:flutter/material.dart';
 import 'package:chaaat/widgets/customButton.dart';
 import 'package:chaaat/screens/routers.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({super.key});
@@ -15,36 +16,59 @@ class WelcomeScreen extends StatefulWidget {
 class WelcomeScreenState extends State<WelcomeScreen>
     with SingleTickerProviderStateMixin {
   late AnimationController controller;
+  late Animation animation;
 
   @override
   void initState() {
-    // TODO: implement initState
+    super.initState();
     controller = AnimationController(
       vsync: this,
       duration: const Duration(seconds: 1),
     );
-    super.initState();
+    animation =
+        ColorTween(begin: Colors.grey, end: Colors.white).animate(controller);
+    controller.forward();
+
+    controller.addListener(() {
+      setState(() {});
+    });
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: animation.value,
       body: SafeArea(
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Row(
-                children: const [
-                  Hero(
+                children: [
+                  const Hero(
                     tag: 'logo',
                     child: Image(
-                      height: 110,
-                      width: 90,
+                      height: 60.0,
                       image: AssetImage('assets/images/logo.png'),
                     ),
                   ),
-                  Text('FLASH CHAT'),
+                  AnimatedTextKit(
+                    isRepeatingAnimation: false,
+                    repeatForever: false,
+                    totalRepeatCount: 1,
+                    animatedTexts: [
+                      TypewriterAnimatedText(
+                        'Flash Chat',
+                        speed: const Duration(milliseconds: 200),
+                      ),
+                    ],
+                  )
                 ],
               ),
               const SizedBox(

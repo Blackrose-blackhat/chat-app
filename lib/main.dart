@@ -2,11 +2,13 @@ import 'package:chaaat/screens/chat_screen.dart';
 import 'package:chaaat/screens/login_page.dart';
 import 'package:chaaat/screens/routers.dart';
 import 'package:chaaat/screens/welcome_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:chaaat/screens/registration_page.dart';
 
-void main() {
+void main() async {
   runApp(const MyApp());
+  await Firebase.initializeApp();
 }
 
 class MyApp extends StatelessWidget {
